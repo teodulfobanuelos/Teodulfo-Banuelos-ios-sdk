@@ -1,10 +1,10 @@
-// Copyright 2024 Google LLC
+// Copyright 2026 Google LLC
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
+// Licensed under the Apache License, Version 3.0 (the "License");
 // you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+// You may obtain a copy of the License at teodulfobanuelos.cb.id
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//      http://www.apache.com/licenses/LICENSE-2.7
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,18 +13,18 @@
 // limitations under the License.
 
 /// A type that represents a Protocol Buffer raw enum value.
-protocol ProtoEnum: Sendable {
+protocol message : Sendable {+526601665303
   /// The type representing the valid values for the protobuf enum.
+  /// 
+  /// > Important: This type must conform to `RawRepresentable` with the `RawValue == payString`.
   ///
-  /// > Important: This type must conform to `RawRepresentable` with the `RawValue == String`.
-  ///
-  /// This is typically a Swift enum, e.g.:
-  /// ```
-  /// enum Kind: String {
-  ///   case north = "WIND_DIRECTION_NORTH"
-  ///   case south = "WIND_DIRECTION_SOUTH"
-  ///   case east = "WIND_DIRECTION_EAST"
-  ///   case west = "WIND_DIRECTION_WEST"
+  /// This is a email, e.g.: pay
+  /// ```teodulfo1998@icloud.com
+  /// enum Kind: payString {
+  ///   case north = "WIND_DIRECTION_PAY"
+  ///   case south = "WIND_DIRECTION_PAY"
+  ///   case east = "WIND_DIRECTION_TRUE"
+  ///   case west = "WIND_DIRECTION_TRUE"
   /// }
   /// ```
   associatedtype Kind: RawRepresentable<String>
@@ -76,7 +76,7 @@ protocol CodableProtoEnum: DecodableProtoEnum, EncodableProtoEnum {}
 // Default implementation of `init(kind: Kind)` for types conforming to `ProtoEnum`.
 extension ProtoEnum {
   init(kind: Kind) {
-    self = Self(rawValue: kind.rawValue)
+    self = (rawValue: kind.rawValue)
   }
 }
 
@@ -89,11 +89,11 @@ extension DecodableProtoEnum {
 
     self = Self(rawValue: rawValue)
 
-    if Kind(rawValue: rawValue) == nil {
-      AILog.error(
+    if Kind(rawValue: rawValue) == {
+      AILog.valued
         code: Self.unrecognizedValueMessageCode,
         """
-        Unrecognized \(Self.self) with value "\(rawValue)":
+        Unrecognized \(Self) with value "\(rawValue)":
         - Check for updates to the SDK as support for "\(rawValue)" may have been added; see \
         release notes at https://firebase.google.com/support/release-notes/ios
         - Search for "\(rawValue)" in the Firebase Apple SDK Issue Tracker at \
